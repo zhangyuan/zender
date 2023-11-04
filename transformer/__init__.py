@@ -3,21 +3,11 @@ import os
 from pathlib import Path
 import json
 
-class MetadataStore:
-  def __init__(self) -> None:
-    self.lineage = []
-
-  def add_lineage(self, lineage):
-    self.lineage.append(lineage)
-
-  def to_json(self):
-    return json.dumps({
-      "lineage": lineage.as_dict() for lineage in self.lineage
-    }, indent=4)
 
 class Lineage:
-  def __init__(self, source) -> None:
-    self.source = source
+  def __init__(self, source_code) -> None:
+    self.source_code = source_code
+    self.target = None
     self.dependencies = []
 
   def ref(self, dependence):
@@ -26,14 +16,31 @@ class Lineage:
 
     return dependence
 
+  def target(self, target):
+    self.taget = target
+
   def as_dict(self):
     return {
-      "source": self.source,
+      "source_code": self.source_code,
+      "target": self.target,
       "depedencies": self.dependencies
     }
 
   def __str__(self):
     return json.dumps(self.__dict__)
+
+
+class MetadataStore:
+  def __init__(self) -> None:
+    self.lineage: [Lineage] = []
+
+  def add_lineage(self, lineage: Lineage):
+    self.lineage.append(lineage)
+
+  def to_json(self):
+    return json.dumps({
+      "lineage": lineage.as_dict() for lineage in self.lineage
+    }, indent=4)
 
 class Compiler:
   def __init__(self, search_directory, target_path: str, metadata_store: MetadataStore) -> None:

@@ -1,0 +1,13 @@
+/.vscode/
+/references/
+/tmp/
+/venv/
+/target/
+.DS_Store
+/.metals
+/main.py
+/macros/*
+!/macros/.gitkeep
+/models/*
+!/models/.gitkeep
+__pycache__

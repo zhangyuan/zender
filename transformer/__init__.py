@@ -41,7 +41,7 @@ class MetadataStore:
 
   def to_json(self):
     return json.dumps({
-      "lineage": lineage.as_dict() for lineage in self.lineage
+      "lineage": [lineage.as_dict() for lineage in self.lineage]
     }, indent=4)
 
 class Compiler:

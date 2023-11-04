@@ -7,23 +7,25 @@ import json
 class Lineage:
   def __init__(self, source_code) -> None:
     self.source_code = source_code
-    self.target = None
-    self.dependencies = []
+    self.target_tables = []
+    self.source_tables = []
 
   def ref(self, dependence):
-    if dependence not in self.dependencies:
-      self.dependencies.append(dependence)
+    if dependence not in self.source_tables:
+      self.source_tables.append(dependence)
 
     return dependence
 
   def target(self, target):
-    self.taget = target
+    if target not in self.target_tables:
+      self.target_tables.append(target)
+    return target
 
   def as_dict(self):
     return {
       "source_code": self.source_code,
-      "target": self.target,
-      "depedencies": self.dependencies
+      "targets": self.target_tables,
+      "sources": self.source_tables
     }
 
   def __str__(self):
@@ -54,7 +56,8 @@ class Compiler:
   def compile(self, model_path):
     lineage = Lineage(model_path)
     func_dict = {
-      "ref": lineage.ref
+      "ref": lineage.ref,
+      "target": lineage.target,
     }
 
     template = self.env.get_template(model_path)

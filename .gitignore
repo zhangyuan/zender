@@ -6,8 +6,6 @@
 .DS_Store
 /.metals
 /main.py
-/macros/*
-!/macros/.gitkeep
-/models/*
-!/models/.gitkeep
+/scripts/*
+!/scripts/.gitkeep
 __pycache__

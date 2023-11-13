@@ -89,11 +89,13 @@ class Compiler:
             f.write(self.metadata_store.to_json())
 
 
-def compile_models(models):
+def compile_models(models, search_directory=None, target_path="target"):
+    if not search_directory:
+        search_directory = ["scripts"]
     metadata_store = MetadataStore()
     compiler = Compiler(
-        search_directory=["models", "macros"],
-        target_path="target",
+        search_directory=search_directory,
+        target_path=target_path,
         metadata_store=metadata_store,
     )
 

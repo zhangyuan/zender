@@ -2,7 +2,7 @@
 
 ## Example
 
-Given the SQL script in `models/my_first_model.sql`:
+Given the SQL script in `scripts/my_first_model.sql`:
 
 ```sql
 WITH source AS (

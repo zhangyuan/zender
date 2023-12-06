@@ -1,12 +1,12 @@
-## Transformer
+## Renderer
 
 ## Example
 
-Given the SQL script in `scripts/my_first_model.sql`:
+Given the SQL script in `templates/my_first_model.sql`:
 
 ```sql
 WITH source AS (
-  SELECT id, name FROM {{ ref("users")}}
+  SELECT id, name FROM {{ source("users")}}
 )
 INSERT INTO {{ target("usernames")}}
 select * from source

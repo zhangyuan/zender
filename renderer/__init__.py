@@ -7,25 +7,25 @@ from jinja2 import Environment, FileSystemLoader
 class Lineage:
     def __init__(self, source_code) -> None:
         self.source_code = source_code
-        self.target_tables = []
-        self.source_tables = []
+        self.targets = []
+        self.sources = []
 
-    def ref(self, dependence):
-        if dependence not in self.source_tables:
-            self.source_tables.append(dependence)
+    def source(self, dependence):
+        if dependence not in self.sources:
+            self.sources.append(dependence)
 
         return dependence
 
     def target(self, target):
-        if target not in self.target_tables:
-            self.target_tables.append(target)
+        if target not in self.targets:
+            self.targets.append(target)
         return target
 
     def as_dict(self):
         return {
             "source_code": self.source_code,
-            "targets": self.target_tables,
-            "sources": self.source_tables,
+            "targets": self.targets,
+            "sources": self.sources,
         }
 
     def __str__(self):
@@ -58,7 +58,7 @@ class Compiler:
     def compile(self, model_path):
         lineage = Lineage(model_path)
         func_dict = {
-            "ref": lineage.ref,
+            "source": lineage.source,
             "target": lineage.target,
         }
 
@@ -91,7 +91,7 @@ class Compiler:
 
 def compile_models(models, search_directory=None, target_path="target"):
     if not search_directory:
-        search_directory = ["scripts"]
+        search_directory = ["templates"]
     metadata_store = MetadataStore()
     compiler = Compiler(
         search_directory=search_directory,

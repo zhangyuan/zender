@@ -22,7 +22,7 @@ setup(
   ],
   entry_points={
     "console_scripts": [
-      "zender=zender.cli.main"
+      "zender=zender.cli:main"
     ]
   }
 )

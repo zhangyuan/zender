@@ -35,6 +35,8 @@ jobs:
       url: https://pypi.org/p/zender
     permissions:
       id-token: write
+    needs:
+      - build
     steps:
     - name: Download all the dists
       uses: actions/download-artifact@v3

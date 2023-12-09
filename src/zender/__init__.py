@@ -85,5 +85,7 @@ class Compiler:
 
     def save_metadata(self):
         metadata_store_path = os.path.join(self.target_directory, "metadata.json")
+        if not os.path.exists(metadata_store_path):
+            os.makedirs(os.path.dirname(metadata_store_path))
         with open(metadata_store_path, "w", encoding="utf-8") as f:
             f.write(self.metadata_store.to_json())

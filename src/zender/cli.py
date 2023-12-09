@@ -1,5 +1,5 @@
-import click
 import glob
+import click
 import zender
 
 
@@ -28,9 +28,11 @@ def render(templates_directory, target_directory):
         compiler.compile(file)
     compiler.save_metadata()
 
+
 def main():
     # pylint: disable=no-value-for-parameter
     render()
+
 
 if __name__ == "__main__":
     main()

@@ -29,7 +29,9 @@ def render(templates_directory, target_directory):
         compiler.compile(file)
     compiler.save_metadata()
 
-
-if __name__ == "__main__":
+def main():
     # pylint: disable=no-value-for-parameter
     render()
+
+if __name__ == "__main__":
+    main()

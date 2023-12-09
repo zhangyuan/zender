@@ -22,7 +22,7 @@ setup(
   ],
   entry_points={
     "console_scripts": [
-      "render_templates=cli.main"
+      "zender=cli.main"
     ]
   }
 )

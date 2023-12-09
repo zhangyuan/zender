@@ -1,11 +1,9 @@
 /.vscode/
-/references/
 /tmp/
 /venv/
 /target/
 .DS_Store
 /.metals
-/main.py
-/scripts/*
+/templates/*
 !/scripts/.gitkeep
 __pycache__

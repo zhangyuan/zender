@@ -87,18 +87,3 @@ class Compiler:
         metadata_store_path = os.path.join(self.target_directory, "metadata.json")
         with open(metadata_store_path, "w", encoding="utf-8") as f:
             f.write(self.metadata_store.to_json())
-
-
-def compile_models(models, search_directory=None, target_path="target"):
-    if not search_directory:
-        search_directory = ["templates"]
-    metadata_store = MetadataStore()
-    compiler = Compiler(
-        search_directory=search_directory,
-        target_path=target_path,
-        metadata_store=metadata_store,
-    )
-
-    for model in models:
-        compiler.compile(model)
-    compiler.save_metadata()

@@ -1,3 +1,3 @@
 .PHONY: fmt
 fmt:
-	black renderer/
+	black src/

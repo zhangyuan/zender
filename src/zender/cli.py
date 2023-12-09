@@ -24,7 +24,6 @@ def render(templates_directory, target_directory):
         templates_directory = templates_directory[:-1]
 
     for file in glob.glob(f"{templates_directory}/**/*", recursive=True):
-        print(f"file:{file}")
         file = file[len(templates_directory) + 1 :]
         compiler.compile(file)
     compiler.save_metadata()

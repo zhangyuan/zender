@@ -4,4 +4,4 @@ fmt:
 
 .PHONY: lint
 lint:
-	pylint src/
+	pylint $$(git ls-files '*.py')

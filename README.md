@@ -16,10 +16,9 @@ Firstly, Create the `./templates` folder and add a templates, e.g. `./templates/
 
 ```sql
 WITH source AS (
-  select id, username from users where status = {{ source('active') }}
+  select id, username from users where status = '{{ source('active') }}'
 )
 INSERT INTO {{ target('active_users') }}
-VALUES
 SELECT id, username from source
 ```
 
@@ -27,7 +26,7 @@ The compiled file is created in `./target/compiled/active_users.sql` with the fo
 
 ```sql
 WITH source AS (
-  select id, username from users where status = active
+  select id, username from users where status = 'active'
 )
 INSERT INTO active_users
 SELECT id, username from source

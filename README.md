@@ -16,7 +16,7 @@ Firstly, Create the `./templates` folder and add a templates, e.g. `./templates/
 
 ```sql
 WITH source AS (
-  select id, username from users where status = '{{ source('active') }}'
+  select id, username from {{ source('users') }} where status = 'active'
 )
 INSERT INTO {{ target('active_users') }}
 SELECT id, username from source
@@ -43,7 +43,7 @@ And the metadata is saved into `target/metadata.json`:
                 "active_users"
             ],
             "sources": [
-                "active"
+                "users"
             ]
         }
     ]
